@@ -15,13 +15,13 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh "docker build -t I7Sacto/${IMAGE_NAME} ."
+        sh "docker build -t i7Sacto/${IMAGE_NAME} ."
       }
     }
     stage('Push') {
       steps {
-        withDockerRegistry([credentialsId: 'dockerhub-creds']) {
-          sh "docker push I7Sacto/${IMAGE_NAME}"
+        withDockerRegistry([credentialsId: 'dockerhub-creds', url: 'https://index.docker.io/v1/']) {
+          sh "docker push i7Sacto/${IMAGE_NAME}"
         }
       }
     }
